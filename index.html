@@ -754,15 +754,22 @@
 
         .profiles-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
             margin-top: 50px;
+            justify-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .profiles-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
             .profiles-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
+                gap: 25px;
                 grid-auto-rows: 1fr;
                 align-items: stretch;
             }
@@ -838,6 +845,378 @@
         .profile-icon.hackerrank {
             background: linear-gradient(135deg, #2ec866, #00ea64);
         }
+
+        /* Education Section */
+        .education-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 70px 0;
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border-color);
+            box-shadow: 0 20px 60px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .education-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px var(--shadow-medium);
+            border-color: var(--accent-primary)50;
+        }
+
+        .education-item {
+            margin-bottom: 50px;
+        }
+
+        .education-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .college-info {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .college-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+
+        .college-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--shadow-medium);
+            border-color: var(--accent-primary);
+        }
+
+        .college-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .college-details h4 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .college-name {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .college-field, .college-year {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+            border-color: var(--accent-primary);
+        }
+
+        .course-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ongoing-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-content h4 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .course-provider {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .course-date, .course-progress {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .validate-btn {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .validate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px var(--accent-primary)30;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Books & Languages Section */
+        .books-languages-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 70px 0;
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border-color);
+            box-shadow: 0 20px 60px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .books-languages-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px var(--shadow-medium);
+            border-color: var(--accent-primary)50;
+        }
+
+        .books-languages-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .book-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow-medium);
+            border-color: var(--accent-primary);
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 160px;
+            margin: 0 auto 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px var(--shadow-light);
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info h4 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .book-author {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .book-rating {
+            font-size: 0.9rem;
+        }
+
+        .languages-categories {
+            margin-top: 30px;
+        }
+
+        .language-category {
+            margin-bottom: 40px;
+        }
+
+        .language-category h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .language-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            transform: translateX(5px);
+            border-color: var(--accent-primary);
+        }
+
+        .language-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .language-details {
+            flex: 1;
+        }
+
+        .language-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .proficiency-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .proficiency-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .proficiency-text {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design for New Sections */
+        @media (max-width: 768px) {
+            .education-section,
+            .books-languages-section {
+                padding: 40px 20px;
+                margin: 40px 0;
+            }
+
+            .books-languages-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .books-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+
+            .college-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .college-icon {
+                 margin-bottom: 15px;
+             }
+         }
+
+         .profile-icon.hackerrank {
+             background: linear-gradient(135deg, #2ec866, #00ea64);
+         }
 
         .profile-name {
             font-size: 1.4rem;
@@ -1585,6 +1964,139 @@
             .review-card {
                 margin: 0 10px;
             }
+
+            /* Mobile optimization for books and languages */
+            .books-languages-section {
+                padding: 20px 15px;
+                margin: 20px 10px;
+                border-radius: 20px;
+            }
+
+            .books-languages-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .books-section, .languages-section {
+                padding: 0;
+            }
+
+            .books-section .section-title,
+            .languages-section .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .books-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .book-card {
+                padding: 12px;
+                border-radius: 12px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .book-cover {
+                width: 80px;
+                height: 110px;
+                margin: 0 auto 10px;
+                border-radius: 8px;
+            }
+
+            .book-info h4 {
+                font-size: 0.85rem;
+                line-height: 1.2;
+                margin-bottom: 3px;
+            }
+
+            .book-author {
+                font-size: 0.75rem;
+                margin-bottom: 8px;
+            }
+
+            .book-rating {
+                font-size: 0.8rem;
+            }
+
+            .language-category h3 {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+
+            .language-item {
+                padding: 10px;
+                gap: 10px;
+                border-radius: 10px;
+                margin-bottom: 8px;
+            }
+
+            .language-icon {
+                font-size: 1.2rem;
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+            }
+
+            .language-name {
+                font-size: 0.9rem;
+            }
+
+            .proficiency-text {
+                font-size: 0.8rem;
+            }
+
+            .proficiency-bar {
+                height: 5px;
+            }
+
+            /* Education section mobile optimization */
+            .education-section {
+                padding: 30px 20px;
+                margin: 40px 10px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .course-card {
+                padding: 15px;
+            }
+
+            .validation-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+
+            /* Profiles section mobile optimization */
+            .profiles-section {
+                padding: 30px 20px;
+                margin: 40px 10px;
+            }
+
+            .profiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .profile-card {
+                padding: 15px;
+                min-height: 120px;
+            }
+
+            .profile-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .profile-name {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -1615,9 +2127,11 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#profiles">Profiles</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#books-languages">Books & Languages</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">
                     <span id="theme-icon">🌙</span>
@@ -1958,6 +2472,213 @@
                     </div>
                     <div class="profile-name">HackerRank</div>
                     
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="education-section fade-in">
+            <h2 class="section-title">Education & Certifications</h2>
+            <p style="text-align: center; color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 30px;">My academic background and professional certifications in data science and analytics.</p>
+            
+            <!-- College Education -->
+            <div class="education-item">
+                <h3 class="education-title">Academic Background</h3>
+                <div class="college-info">
+                    <div class="college-card">
+                        <div class="college-icon">🎓</div>
+                        <div class="college-details">
+                            <h4>Bachelor's Degree</h4>
+                            <p class="college-name">Your University Name</p>
+                            <p class="college-field">Computer Science / Data Science</p>
+                            <p class="college-year">2020 - 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Courses -->
+            <div class="education-item">
+                <h3 class="education-title">Completed Certifications</h3>
+                <div class="courses-grid">
+                    <div class="course-card completed">
+                        <div class="course-image">
+                            <img src="Assets/01.jpg" alt="Data Analysis Certificate">
+                        </div>
+                        <div class="course-content">
+                            <h4>Data Analysis Professional Certificate</h4>
+                            <p class="course-provider">Google Career Certificates</p>
+                            <p class="course-date">Completed: January 2024</p>
+                            <div class="course-actions">
+                                <button class="validate-btn" onclick="window.open('https://coursera.org/verify/certificate', '_blank')">
+                                    🔗 Validate Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card completed">
+                        <div class="course-image">
+                            <img src="Assets/02.png" alt="Python Certificate">
+                        </div>
+                        <div class="course-content">
+                            <h4>Python for Data Science</h4>
+                            <p class="course-provider">IBM Data Science</p>
+                            <p class="course-date">Completed: March 2024</p>
+                            <div class="course-actions">
+                                <button class="validate-btn" onclick="window.open('https://coursera.org/verify/certificate', '_blank')">
+                                    🔗 Validate Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card completed">
+                        <div class="course-image">
+                            <img src="Assets/03.png" alt="SQL Certificate">
+                        </div>
+                        <div class="course-content">
+                            <h4>Advanced SQL for Data Analytics</h4>
+                            <p class="course-provider">365 Data Science</p>
+                            <p class="course-date">Completed: February 2024</p>
+                            <div class="course-actions">
+                                <button class="validate-btn" onclick="window.open('https://365datascience.com/verify', '_blank')">
+                                    🔗 Validate Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ongoing Courses -->
+            <div class="education-item">
+                <h3 class="education-title">Currently Pursuing</h3>
+                <div class="courses-grid">
+                    <div class="course-card ongoing">
+                        <div class="course-image">
+                            <img src="Assets/04.png" alt="Machine Learning Course">
+                            <div class="ongoing-badge">In Progress</div>
+                        </div>
+                        <div class="course-content">
+                            <h4>Machine Learning Specialization</h4>
+                            <p class="course-provider">Stanford University</p>
+                            <p class="course-progress">Progress: 65%</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card ongoing">
+                        <div class="course-image">
+                            <img src="Assets/05.jpg" alt="Deep Learning Course">
+                            <div class="ongoing-badge">In Progress</div>
+                        </div>
+                        <div class="course-content">
+                            <h4>Deep Learning Specialization</h4>
+                            <p class="course-provider">DeepLearning.AI</p>
+                            <p class="course-progress">Progress: 40%</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books & Languages Section -->
+    <section id="books-languages" class="section">
+        <div class="books-languages-section fade-in">
+            <div class="books-languages-grid">
+                <!-- Books Section -->
+                <div class="books-section">
+                    <h2 class="section-title">Recommended Books</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">Books that shaped my data science journey.</p>
+                    <div class="books-grid">
+                        <div class="book-card">
+                            <div class="book-cover">
+                                <img src="Assets/06.png" alt="Python for Data Analysis">
+                            </div>
+                            <div class="book-info">
+                                <h4>Python for Data Analysis</h4>
+                                <p class="book-author">Wes McKinney</p>
+                                <div class="book-rating">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+
+                        <div class="book-card">
+                            <div class="book-cover">
+                                <img src="Assets/07.png" alt="Hands-On Machine Learning">
+                            </div>
+                            <div class="book-info">
+                                <h4>Hands-On Machine Learning</h4>
+                                <p class="book-author">Aurélien Géron</p>
+                                <div class="book-rating">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+
+                        <div class="book-card">
+                            <div class="book-cover">
+                                <img src="Assets/08.png" alt="The Elements of Statistical Learning">
+                            </div>
+                            <div class="book-info">
+                                <h4>Statistical Learning</h4>
+                                <p class="book-author">Hastie, Tibshirani</p>
+                                <div class="book-rating">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages Section -->
+                <div class="languages-section">
+                    <h2 class="section-title">Languages</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">Spoken languages I communicate in.</p>
+                    
+                    <div class="languages-categories">
+                        <div class="language-category">
+                            <h3>Spoken Languages</h3>
+                            <div class="language-items">
+                                <div class="language-item">
+                                    <div class="language-icon">🇪🇬</div>
+                                    <div class="language-details">
+                                        <span class="language-name">Arabic</span>
+                                        <div class="proficiency-bar">
+                                            <div class="proficiency-fill" style="width: 100%;"></div>
+                                        </div>
+                                        <span class="proficiency-text">Native</span>
+                                    </div>
+                                </div>
+
+                                <div class="language-item">
+                                    <div class="language-icon">🇺🇸</div>
+                                    <div class="language-details">
+                                        <span class="language-name">English</span>
+                                        <div class="proficiency-bar">
+                                            <div class="proficiency-fill" style="width: 90%;"></div>
+                                        </div>
+                                        <span class="proficiency-text">Fluent</span>
+                                    </div>
+                                </div>
+
+                                <div class="language-item">
+                                    <div class="language-icon">🇩🇪</div>
+                                    <div class="language-details">
+                                        <span class="language-name">German</span>
+                                        <div class="proficiency-bar">
+                                            <div class="proficiency-fill" style="width: 60%;"></div>
+                                        </div>
+                                        <span class="proficiency-text">Intermediate</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
