@@ -132,6 +132,33 @@
             align-items: center;
         }
 
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+
         .nav-links a {
             color: var(--text-primary);
             text-decoration: none;
@@ -516,7 +543,9 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">ME</div>
+                <div class="logo">Mahmoud Elmahdy</div>
+                <div class="menu-icon">&#9776;</div>
+            
             <ul class="nav-links">
                 <!-- Links now point back to the main page sections -->
                 <li><a href="index.html#home">Home</a></li>
@@ -790,6 +819,14 @@
                 if (e.key === 'ArrowLeft') prevImage();
                 if (e.key === 'Escape') closeGallery();
             }
+        });
+    </script>
+    <script>
+        const menuIcon = document.querySelector('.menu-icon');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
