@@ -211,48 +211,63 @@
         }
         /* Modernize tech-tag icons */
         .tech-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
             padding: 6px 16px;
             background: var(--accent-primary)15;
             border: 1px solid var(--accent-primary)30;
             border-radius: 20px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--accent-primary);
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        .tech-tag svg {
-            width: 18px;
-            height: 18px;
-            display: inline-block;
-            vertical-align: middle;
+        .tech-tag:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: scale(1.05);
         }
         /* Enhance first 4 project cards on mobile */
         @media (max-width: 768px) {
-            .projects-grid .project-card:nth-child(-n+4) {
+            .projects-grid {
+                grid-template-columns: 1fr !important;
+                gap: 18px;
+                width: 100%;
+            }
+            .project-card {
                 min-width: 0;
                 min-height: 0;
-                padding: 14px 6px;
-                border-radius: 18px;
-                margin-bottom: 8px;
-                box-shadow: 0 2px 10px var(--shadow-light);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+                padding: 10px 5px;
                 width: 100%;
-                height: 180px;
+                box-sizing: border-box;
             }
-            .projects-grid .project-card:nth-child(-n+4) .project-content {
-                padding: 12px 0 0 0;
-                text-align: center;
+            .section {
+                padding: 80px 8px;
             }
-            .projects-grid .project-card:nth-child(-n+4) .project-image {
-                height: 60px !important;
-                min-height: 60px;
-                max-height: 60px;
+            .section-title {
+                font-size: 2.1rem;
+                margin-bottom: 30px;
+            }
+            .project-image {
+                height: 180px !important;
+            }
+            .modal-content {
+                padding: 10px;
+                max-width: 98vw;
+            }
+            .modal-image {
+                max-height: 45vh;
+            }
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+                top: 60%;
+            }
+            .close {
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+                top: -10px;
+                right: -10px;
             }
         }
         .section {
@@ -288,14 +303,19 @@
 
         .projects-header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 50px;
-            flex-wrap: wrap;
-            gap: 20px;
+            flex-wrap: nowrap;
+            gap: 12px;
         }
 
         .projects-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 16px;
             padding: 12px 24px;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: #ffffff;
@@ -307,10 +327,31 @@
             box-shadow: 0 5px 15px var(--accent-primary)30;
             border: 2px solid var(--accent-primary);
         }
-
         .projects-btn:hover {
             transform: scale(1.08) translateY(-2px);
             box-shadow: 0 10px 25px var(--accent-primary)50;
+        }
+        .projects-btn svg {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        @media (max-width: 768px) {
+            .projects-header {
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 10px;
+            }
+            .section-title {
+                margin-bottom: 0;
+            }
+            .projects-btn {
+                margin-left: 10px;
+                min-width: 0;
+                padding-left: 18px;
+                padding-right: 18px;
+            }
         }
         
         /* Project Filters */
@@ -370,6 +411,14 @@
             .projects-grid {
                 grid-template-columns: 1fr !important;
                 gap: 18px;
+                width: 100%;
+            }
+            .project-card {
+                min-width: 0;
+                min-height: 0;
+                padding: 10px 5px;
+                width: 100%;
+                box-sizing: border-box;
             }
             .section {
                 padding: 80px 8px;
@@ -377,11 +426,6 @@
             .section-title {
                 font-size: 2.1rem;
                 margin-bottom: 30px;
-            }
-            .project-card {
-                min-width: 0;
-                min-height: 0;
-                padding: 10px 5px;
             }
             .project-image {
                 height: 180px !important;
@@ -447,6 +491,7 @@
         }
         
         .project-image img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -484,24 +529,63 @@
             display: flex;
             gap: 18px;
             margin-top: auto;
+            justify-content: center;
         }
 
         .project-link {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            padding: 16px 48px;
+            background: linear-gradient(135deg, var(--accent-primary) 60%, var(--accent-secondary) 100%);
             color: #ffffff;
             text-decoration: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px var(--accent-primary)30;
+            border-radius: 32px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(.4,1.5,.5,1);
+            box-shadow: 0 4px 24px 0 var(--shadow-medium), 0 1.5px 6px 0 var(--accent-primary)10;
             border: 2px solid var(--accent-primary);
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .project-link:hover {
+            background: linear-gradient(135deg, var(--accent-secondary) 60%, var(--accent-primary) 100%);
+            color: #fff;
+            box-shadow: 0 8px 32px 0 var(--accent-primary)30, 0 2px 8px 0 var(--accent-secondary)20;
+            transform: translateY(-2px) scale(1.04);
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 3px;
         }
 
-        .project-link:hover {
-            transform: scale(1.08) translateY(-2px);
-            box-shadow: 0 10px 25px var(--accent-primary)50;
+        .project-link svg {
+            width: 28px;
+            height: 28px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0;
+        }
+
+        @media (max-width: 600px) {
+            .project-links {
+                flex-direction: column;
+                gap: 16px;
+                width: 100%;
+            }
+            .project-link {
+                width: 100%;
+                font-size: 1.15rem;
+                padding: 18px 0;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+            .project-link svg {
+                width: 28px;
+                height: 28px;
+                margin-right: 12px;
+            }
         }
         
         footer {
@@ -658,6 +742,14 @@
             font-size: 1rem;
         }
 
+        [data-theme="dark"] .floating-theme-toggle svg {
+            stroke: #fff !important;
+            fill: none !important;
+            stroke-width: 2 !important;
+            stroke-linecap: round !important;
+            stroke-linejoin: round !important;
+        }
+
     </style>
 </head>
 <body>
@@ -688,18 +780,24 @@
                 <li><a href="index.html#books-languages">Books & Languages</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
-            <div class="logo">ME</div>
+            <div id="navOverlay" class="nav-overlay"></div>
+            <div class="logo">
+                <p style="font-size: medium;">ME</p>
+            </div>
         </div>
     </nav>
     <button class="floating-theme-toggle" onclick="toggleTheme()">
-        <span id="theme-icon">🌙</span>
+        <span id="theme-icon">
+            <svg id="theme-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </span>
     </button>
 
     <section id="all-projects" class="section">
         <div class="projects-header">
             <h2 class="section-title" style="margin-bottom: 0;">All Projects</h2>
             <a href="index.html" class="projects-btn">
-                ⬅️ Back to Home
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:10px;"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+                Back to Home
             </a>
         </div>
         
@@ -726,10 +824,10 @@
                     <h3>Sales Analytics Dashboard</h3>
                     <p>Comprehensive sales performance dashboard with real-time KPI tracking, trend analysis, and predictive forecasting capabilities.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Python</span>
-                        <span class="tech-tag"><svg>...</svg>Pandas</span>
-                        <span class="tech-tag"><svg>...</svg>Plotly</span>
-                        <span class="tech-tag"><svg>...</svg>SQL</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Plotly</span>
+                        <span class="tech-tag">SQL</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">Live Demo</a>
@@ -747,10 +845,10 @@
                     <h3>Customer Segmentation ML</h3>
                     <p>Machine learning model for customer segmentation using clustering algorithms to identify high-value customer groups.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Python</span>
-                        <span class="tech-tag"><svg>...</svg>Scikit-learn</span>
-                        <span class="tech-tag"><svg>...</svg>K-Means</span>
-                        <span class="tech-tag"><svg>...</svg>Matplotlib</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">K-Means</span>
+                        <span class="tech-tag">Matplotlib</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">Live Demo</a>
@@ -768,10 +866,10 @@
                     <h3>Financial Report Automation</h3>
                     <p>Automated financial reporting system that generates monthly reports, reducing manual work by 80% and improving accuracy.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Excel VBA</span>
-                        <span class="tech-tag"><svg>...</svg>Python</span>
-                        <span class="tech-tag"><svg>...</svg>Power Query</span>
-                        <span class="tech-tag"><svg>...</svg>Power BI</span>
+                        <span class="tech-tag">Excel VBA</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Power Query</span>
+                        <span class="tech-tag">Power BI</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">Live Demo</a>
@@ -789,10 +887,10 @@
                     <h3>Data Pipeline Automation</h3>
                     <p>Designed and implemented a scalable data pipeline using Airflow and Python for efficient ETL processes from various sources.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Python</span>
-                        <span class="tech-tag"><svg>...</svg>Airflow</span>
-                        <span class="tech-tag"><svg>...</svg>SQL</span>
-                        <span class="tech-tag"><svg>...</svg>Docker</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Airflow</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Docker</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">Live Demo</a>
@@ -810,10 +908,10 @@
                     <h3>Real-Time Stock Analysis</h3>
                     <p>A web application that fetches and visualizes real-time stock data, providing technical indicators and trend analysis for traders.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Python</span>
-                        <span class="tech-tag"><svg>...</svg>Flask</span>
-                        <span class="tech-tag"><svg>...</svg>API</span>
-                        <span class="tech-tag"><svg>...</svg>JavaScript</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">API</span>
+                        <span class="tech-tag">JavaScript</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">Live Demo</a>
@@ -831,10 +929,10 @@
                     <h3>A/B Testing Framework</h3>
                     <p>Developed a statistical framework in Python to analyze and interpret A/B test results, ensuring data-driven product decisions.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Python</span>
-                        <span class="tech-tag"><svg>...</svg>Statistics</span>
-                        <span class="tech-tag"><svg>...</svg>Pandas</span>
-                        <span class="tech-tag"><svg>...</svg>SciPy</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Statistics</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">SciPy</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">Live Demo</a>
@@ -852,10 +950,10 @@
                     <h3>Advanced Excel Budget Tracker</h3>
                     <p>Comprehensive budget tracking system with automated calculations, expense categorization, and visual reporting using Excel VBA.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Excel VBA</span>
-                        <span class="tech-tag"><svg>...</svg>Pivot Tables</span>
-                        <span class="tech-tag"><svg>...</svg>Macros</span>
-                        <span class="tech-tag"><svg>...</svg>Charts</span>
+                        <span class="tech-tag">Excel VBA</span>
+                        <span class="tech-tag">Pivot Tables</span>
+                        <span class="tech-tag">Macros</span>
+                        <span class="tech-tag">Charts</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">Download</a>
@@ -873,10 +971,10 @@
                     <h3>Interactive Tableau Dashboard</h3>
                     <p>Dynamic sales performance dashboard with interactive filters, drill-down capabilities, and real-time data connections.</p>
                     <div class="project-tech">
-                        <span class="tech-tag"><svg>...</svg>Tableau</span>
-                        <span class="tech-tag"><svg>...</svg>SQL</span>
-                        <span class="tech-tag"><svg>...</svg>Data Visualization</span>
-                        <span class="tech-tag"><svg>...</svg>Analytics</span>
+                        <span class="tech-tag">Tableau</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Data Visualization</span>
+                        <span class="tech-tag">Analytics</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link" onclick="event.stopPropagation()">View Dashboard</a>
@@ -907,49 +1005,68 @@
     </div>
 
     <script>
+        // Dark mode functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeSvg = document.getElementById('theme-svg');
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                // Sun icon
+                themeSvg.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                // Moon icon
+                themeSvg.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Set correct icon on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeSvg = document.getElementById('theme-svg');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeSvg.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
+            } else {
+                themeSvg.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+            }
+        });
+
         // Nav open/close logic for all screens
         const menuIcon = document.getElementById('menuIcon');
         const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
         menuIcon.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                navOverlay.classList.add('active');
+            } else {
+                navOverlay.classList.remove('active');
+            }
         });
         // Close nav when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
             });
         });
         // Close nav on resize if desktop
         window.addEventListener('resize', () => {
             if (window.innerWidth > 1024) {
                 navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
             }
         });
-        // Dark mode functionality
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
-            const currentTheme = body.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                body.removeAttribute('data-theme');
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // Load saved theme
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme');
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (savedTheme === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
+        // Close nav when clicking outside nav (on overlay)
+        navOverlay.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
             }
         });
 
