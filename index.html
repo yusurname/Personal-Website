@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,28 +111,26 @@
         nav {
             position: fixed;
             top: 0;
-            width: 100%;
-            padding: 20px 50px;
+            left: 0;
+            width: 100vw;
             background: var(--bg-secondary);
-            backdrop-filter: blur(20px);
             z-index: 1000;
-            transition: all 0.3s ease;
             box-shadow: 0 4px 20px var(--shadow-light);
             border-bottom: 1px solid var(--border-color);
-        }
-
-        nav.scrolled {
-            padding: 15px 50px;
-            background: var(--bg-secondary);
-            box-shadow: 0 8px 30px var(--shadow-medium);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 64px;
         }
 
         .nav-container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: row;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100vw;
+            justify-content: flex-end;
+            position: relative;
+            height: 100%;
         }
 
         .logo {
@@ -143,95 +140,137 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-            align-items: center;
+            margin-left: auto;
+            margin-right: 24px;
         }
 
         .menu-icon {
-            display: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
             cursor: pointer;
-            font-size: 28px;
+            margin-left: 24px;
+            margin-right: 16px;
+            z-index: 1101;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: -100vw;
+            width: 260px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            box-shadow: 2px 0 20px var(--shadow-medium);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 80px 0 0 0;
+            gap: 0;
+            transition: left 0.35s cubic-bezier(0.77,0.2,0.05,1.0);
+            z-index: 1100;
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .nav-links li {
+            width: 100%;
+        }
+
+        .nav-links a {
+            display: block;
+            width: 100%;
+            padding: 20px 32px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent-primary)10;
+            color: var(--accent-primary);
+        }
+
+        @media (min-width: 769px) {
+            .nav-links {
+                width: 320px;
+            }
         }
 
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--bg-secondary);
-                padding: 20px 0;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-icon {
-                display: block;
+                width: 80vw;
+                min-width: 180px;
+                max-width: 320px;
             }
         }
 
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-primary);
-            background: var(--card-bg);
-            transform: translateY(-2px);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            transition: width 0.3s ease;
-            border-radius: 1px;
-        }
-
-        .nav-links a:hover::after {
-            width: 60%;
-        }
-
-        /* Dark mode toggle */
-        .theme-toggle {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 25px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .floating-theme-toggle {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 1200;
+            background: #ffe066;
+            border: 3px solid #ffd700;
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 20px;
+            justify-content: center;
+            font-size: 2.4rem;
+            box-shadow: 0 6px 24px var(--shadow-medium);
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
         }
 
-        .theme-toggle:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px var(--shadow-medium);
+        .floating-theme-toggle:hover {
+            background: #ffd700;
+            color: #fff;
+            box-shadow: 0 12px 36px var(--shadow-medium);
+            transform: scale(1.08);
+        }
+
+        .floating-theme-toggle svg {
+            width: 36px;
+            height: 36px;
+            display: block;
+        }
+
+        [data-theme="dark"] .floating-theme-toggle {
+            background: #1a237e;
+            border: 3px solid #3949ab;
+        }
+
+        [data-theme="dark"] .floating-theme-toggle:hover {
+            background: #3949ab;
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.25);
+            z-index: 1099;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links.active ~ .nav-overlay,
+        .nav-overlay.active {
+            display: block;
+        }
+
+        .nav-links {
+            z-index: 1100;
         }
 
         /* Enhanced Hero Section */
@@ -745,105 +784,144 @@
             align-items: center;
             justify-content: center;
         }
-
         .profiles-section:hover {
             transform: translateY(-10px);
             box-shadow: 0 30px 80px var(--shadow-medium);
             border-color: var(--accent-primary)50;
         }
-
         .profiles-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             margin-top: 50px;
             justify-items: center;
+            width: 100%;
         }
-
         @media (max-width: 1024px) {
             .profiles-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-
         @media (max-width: 768px) {
             .profiles-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-                grid-auto-rows: 1fr;
-                align-items: stretch;
+                gap: 18px;
+                margin-top: 30px;
             }
             .profile-card {
-                height: auto;
+                min-width: 140px;
                 min-height: 140px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                max-width: 160px;
+                max-height: 160px;
                 width: 100%;
+                height: 160px;
+                padding: 10px 5px;
             }
         }
-
         .profile-card {
             background: var(--card-bg);
             border-radius: 18px;
-            padding: 18px;
+            padding: 18px 10px;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             border: 2px solid var(--border-color);
             backdrop-filter: blur(20px);
             position: relative;
             box-shadow: 0 8px 20px var(--shadow-light);
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 160px;
+            min-height: 160px;
+            max-width: 180px;
+            max-height: 180px;
+            width: 100%;
+            height: 180px;
         }
-
         .profile-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 40px 80px var(--shadow-medium);
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 20px 40px var(--shadow-medium);
             border-color: var(--accent-primary);
         }
-
         .profile-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 12px;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 10px;
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.7rem;
+            font-size: 2rem;
             color: white;
             position: relative;
             overflow: hidden;
             box-shadow: 0 7px 16px var(--shadow-medium);
+            background: var(--bg-secondary);
         }
-
-        .profile-icon.linkedin {
-            background: linear-gradient(135deg, #0077b5, #005885);
+        .profile-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
         }
-
-        .profile-icon.github {
-            background: linear-gradient(135deg, #333, #000);
+        .profile-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0;
+            margin-top: 2px;
+            word-break: break-word;
         }
-
-        .profile-icon.mostaql {
-            background: linear-gradient(135deg, #4a90e2, #357abd);
+        /* General mobile improvements */
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 8px;
+            }
+            .section-title {
+                font-size: 2.1rem;
+                margin-bottom: 30px;
+            }
+            .project-card, .review-card, .course-card, .book-card {
+                min-width: 0;
+                min-height: 0;
+                padding: 10px 5px;
+            }
+            .projects-grid, .reviews-grid, .books-grid, .courses-grid {
+                grid-template-columns: 1fr !important;
+                gap: 18px;
+            }
+            .project-image, .review-image, .book-cover, .course-image {
+                height: 180px !important;
+            }
+            .modal-content {
+                padding: 10px;
+                max-width: 98vw;
+            }
+            .modal-image {
+                max-height: 45vh;
+            }
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+                top: 60%;
+            }
+            .close {
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+                top: -10px;
+                right: -10px;
+            }
         }
-
-        .profile-icon.khamsat {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-        }
-
-        .profile-icon.data365 {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-        }
-
-        .profile-icon.maven {
-            background: linear-gradient(135deg, #1abc9c, #16a085);
-        }
-
-        .profile-icon.hackerrank {
-            background: linear-gradient(135deg, #2ec866, #00ea64);
+        /* Improve tap targets for mobile */
+        .cta-button, .projects-btn, .project-link, .contact-link, .validate-btn, .resume-btn {
+            min-height: 48px;
+            min-width: 48px;
+            font-size: 1rem;
         }
 
         /* Education Section */
@@ -2097,6 +2175,8 @@
             .profile-name {
                 font-size: 0.9rem;
             }
+
+
         }
     </style>
 </head>
@@ -2117,13 +2197,8 @@
 
     <nav id="navbar">
         <div class="nav-container">
-                <div class="logo">
-                    <p style="font-size: medium;">ME</p>
-</div>
-
-                <div class="menu-icon">&#9776;</div>
-            
-            <ul class="nav-links">
+            <div class="menu-icon" id="menuIcon">&#9776;</div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#profiles">Profiles</a></li>
@@ -2133,12 +2208,18 @@
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#books-languages">Books & Languages</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button class="theme-toggle" onclick="toggleTheme()">
-                    <span id="theme-icon">🌙</span>
-                </button></li>
             </ul>
+            <div id="navOverlay" class="nav-overlay"></div>
+            <div class="logo">
+                <p style="font-size: medium;">ME</p>
+            </div>
         </div>
     </nav>
+    <button class="floating-theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">
+            <svg id="theme-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </span>
+    </button>
 
     <section id="home" class="hero">
         <div class="hero-content">
@@ -2420,58 +2501,45 @@
             <div class="profiles-grid">
                 <div class="profile-card" onclick="window.open('https://linkedin.com/in/yourprofile', '_blank')">
                     <div class="profile-icon linkedin">
-                        <img src="Assets\Mostaql.png">
+                        <img src="Assets/2.png" alt="LinkedIn Logo" style="width: 40px; height: 40px;">
                     </div>
                     <div class="profile-name">LinkedIn</div>
-                    
                 </div>
-                
                 <div class="profile-card" onclick="window.open('https://github.com/MahmoudElmahdy', '_blank')">
                     <div class="profile-icon github">
-                        <img src="Assets\github-mark.svg">
+                        <img src="Assets/github-mark.svg" alt="GitHub Logo" style="width: 40px; height: 40px;">
                     </div>
                     <div class="profile-name">GitHub</div>
-                    
                 </div>
-                
                 <div class="profile-card" onclick="window.open('https://mostaql.com/u/yourprofile', '_blank')">
                     <div class="profile-icon mostaql">
-                        <img src="Assets\Mostaql.png">   
+                        <img src="Assets/Mostaql.png" alt="Mostaql Logo" style="width: 40px; height: 40px;">
                     </div>
                     <div class="profile-name">Mostaql</div>
-                    
                 </div>
-                
                 <div class="profile-card" onclick="window.open('https://khamsat.com/user/yourprofile', '_blank')">
                     <div class="profile-icon khamsat">
-                        <img src="Assets\Khamsat.png">
+                        <img src="Assets/khamsat.png" alt="Khamsat Logo" style="width: 40px; height: 40px;">
                     </div>
                     <div class="profile-name">Khamsat</div>
-                    
                 </div>
-                
                 <div class="profile-card" onclick="window.open('https://365datascience.com/profile/yourprofile', '_blank')">
                     <div class="profile-icon data365">
-                        <img src="Assets\Mostaql.png">
+                        <img src="Assets/10.jpeg" alt="365 Data Science Logo" style="width: 40px; height: 40px;">
                     </div>
                     <div class="profile-name">365 Data Science</div>
-                    
                 </div>
-                
                 <div class="profile-card" onclick="window.open('https://maven-analytics.com/profile/yourprofile', '_blank')">
                     <div class="profile-icon maven">
-                        <img src="Assets\Mostaql.png">
+                        <img src="Assets/11.jpeg" alt="Maven Analytics Logo" style="width: 40px; height: 40px;">
                     </div>
                     <div class="profile-name">Maven Analytics</div>
-                    
                 </div>
-                
                 <div class="profile-card" onclick="window.open('https://hackerrank.com/yourprofile', '_blank')">
                     <div class="profile-icon hackerrank">
-                        <img src="Assets\Mostaql.png">
+                        <img src="Assets/12.jpg" alt="HackerRank Logo" style="width: 40px; height: 40px;">
                     </div>
                     <div class="profile-name">HackerRank</div>
-                    
                 </div>
             </div>
         </div>
@@ -2688,8 +2756,15 @@
         <div class="contact fade-in">
             <h2 class="section-title">Let's Connect</h2>
             <p>Ready to transform your data into actionable insights? Let's discuss how we can work together.</p>
+            <form id="contactForm" style="max-width: 400px; margin: 0 auto;">
+                <input type="text" name="user_name" placeholder="Your Name" required style="width:100%;margin-bottom:12px;padding:12px;border-radius:8px;border:1px solid var(--border-color);">
+                <input type="email" name="user_email" placeholder="Your Email" required style="width:100%;margin-bottom:12px;padding:12px;border-radius:8px;border:1px solid var(--border-color);">
+                <textarea name="message" placeholder="Your Message" required style="width:100%;margin-bottom:12px;padding:12px;border-radius:8px;border:1px solid var(--border-color);min-height:100px;"></textarea>
+                <button type="submit" style="width:100%;padding:14px;border-radius:8px;background:var(--accent-primary);color:#fff;font-weight:700;border:none;cursor:pointer;">Send Message</button>
+                <div id="formStatus" style="margin-top:10px;font-weight:600;"></div>
+            </form>
             <div class="contact-links">
-                <a href="mailto:your.email@example.com" class="contact-link">
+                <a href="mailto:mahmoud.ilmahdy1@gmail.com" class="contact-link">
                     📧 Email
                 </a>
                 <a href="https://linkedin.com/in/yourprofile" class="contact-link">
@@ -2704,6 +2779,33 @@
             </div>
         </div>
     </section>
+    <!-- EmailJS integration -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+    // EmailJS setup: Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, YOUR_USER_ID with your EmailJS credentials
+    (function(){
+        emailjs.init('YOUR_USER_ID');
+    })();
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function() {
+                document.getElementById('formStatus').textContent = 'Message sent successfully!';
+                document.getElementById('formStatus').style.color = 'green';
+                document.getElementById('contactForm').reset();
+            }, function(error) {
+                document.getElementById('formStatus').textContent = 'Failed to send message. Please try again.';
+                document.getElementById('formStatus').style.color = 'red';
+            });
+    });
+    </script>
+    <!--
+    EmailJS Setup Instructions:
+    1. Go to https://www.emailjs.com/ and sign up.
+    2. Create an email service and email template.
+    3. Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_USER_ID' in the script above with your actual EmailJS credentials.
+    4. You can customize the email template to include name, email, and message fields.
+    -->
 
     <footer>
         <p>&copy; 2025 Mahmoud Elmahdy. All rights reserved.</p>
@@ -2714,27 +2816,29 @@
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
+            const themeSvg = document.getElementById('theme-svg');
             const currentTheme = body.getAttribute('data-theme');
-            
             if (currentTheme === 'dark') {
                 body.removeAttribute('data-theme');
-                themeIcon.textContent = '🌙';
+                // Sun icon
+                themeSvg.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
                 localStorage.setItem('theme', 'light');
             } else {
                 body.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
+                // Moon icon
+                themeSvg.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
                 localStorage.setItem('theme', 'dark');
             }
         }
-
-        // Load saved theme
+        // Set correct icon on load
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme');
-            const themeIcon = document.getElementById('theme-icon');
-            
+            const themeSvg = document.getElementById('theme-svg');
             if (savedTheme === 'dark') {
                 document.body.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
+                themeSvg.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
+            } else {
+                themeSvg.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
             }
         });
 
@@ -2908,18 +3012,38 @@
         </div>
     </div>
     <script>
-        const menuIcon = document.querySelector('.menu-icon');
-        const navLinks = document.querySelector('.nav-links');
-
+        const menuIcon = document.getElementById('menuIcon');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
         menuIcon.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                navOverlay.classList.add('active');
+            } else {
+                navOverlay.classList.remove('active');
+            }
         });
-
-        // Close mobile nav after clicking any nav link
+        // Close nav when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
             });
+        });
+        // Close nav on resize if desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+            }
+        });
+        // Close nav when clicking outside nav (on overlay)
+        navOverlay.addEventListener('click', (e) => {
+            // Only close if click is outside the nav
+            if (!navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+            }
         });
     </script>
 </body>
